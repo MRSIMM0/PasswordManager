@@ -1,0 +1,77 @@
+<div
+  style="
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    z-index: -1;
+    background-color: #c9a2bf;
+  "
+></div>
+<div style="display: flex; overflow: hidden">
+  <div
+    style="
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 15vh;
+      min-width: 10em;
+      min-height: 20em;
+    "
+  >
+    <div
+      class="card"
+      style="
+        background-color: rgb(250, 237, 219);
+        width: 35vw;
+        height: 25vw;
+        min-height: 20em;
+      "
+    >
+      <div class="card-body">
+        <div
+          style="
+            margin-left: 2em;
+            margin-right: 2em;
+            margin-top: 1em;
+            margin-bottom: 3em;
+          "
+        >
+          <div style="display: flex">
+            <object
+              style="
+                width: 25vw;
+                height: 15vw;
+                margin-left: auto;
+                margin-right: auto;
+                min-width: 5em;
+              "
+              type="image/svg+xml"
+              data="../../../assets/drawing.svg"
+            >
+              <param name="color" value="rgb(250, 237, 219)" />
+            </object>
+          </div>
+
+          <div style="display: flex">
+            <div style="margin-left: auto; margin-right: auto">
+              <h1>401</h1>
+            </div>
+          </div>
+          <div style="display: flex; margin-top: 1em">
+            <i
+            (click)="home()"
+              style="
+                cursor: pointer;
+                font-size: 48px;
+                margin-left: auto;
+                margin-right: auto;
+                color: #aa789e;
+              "
+              class="fa fa-home"
+              aria-hidden="true"
+            ></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

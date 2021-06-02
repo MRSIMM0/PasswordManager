@@ -1,0 +1,26 @@
+.addBytton {
+  color: rgba(255, 255, 255, 0.925);
+
+  background-color: rgba(90, 90, 90, 0.5);
+}
+
+.addBytton:hover {
+  color: rgba(255, 255, 255, 0.925);
+
+  background-color: rgba(70, 70, 70, 0);
+}
+
+.anim {
+  opacity: 78%;
+  animation: animation 5s;
+}
+@keyframes animation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 78%;
+  }
+}
+
+

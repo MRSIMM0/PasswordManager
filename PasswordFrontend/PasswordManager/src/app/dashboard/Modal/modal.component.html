@@ -1,0 +1,96 @@
+<div class="modal-header">
+  <h4 class="modal-title">New Password</h4>
+</div>
+<div class="modal-body">
+  <form name="form" (ngSubmit)="(f.form.valid)" #f="ngForm" novalidate>
+    <div style="margin-left: auto; margin-top: 0, 5em">
+      <label for="input" class="col-form-label ml-2"> Name </label>
+    </div>
+    <div style="content: ' '; margin-left: 1rem"></div>
+    <div style="margin-right: auto">
+      <input
+        [formControl]="name"
+        style="margin-left: auto; margin-right: auto; font-weight: bold"
+        required
+        type="text"
+        id="input"
+        class="form-control"
+        aria-describedby="passwordHelpInline"
+      />
+    </div>
+
+    <div style="margin-top: 1em">
+      <div style="margin-left: auto">
+        <label for="inputPassword6" class="col-form-label ml-2">
+          Plain Password
+        </label>
+      </div>
+      <div style="content: ' '; margin-left: 1rem"></div>
+      <div style="margin-right: auto">
+        <input
+          [formControl]="uEncPassword"
+          style="
+            margin-left: auto;
+            margin-right: auto;
+
+            font-weight: bold;
+          "
+          required
+          type="password"
+          id="inputPassword6"
+          class="form-control"
+          aria-describedby="passwordHelpInline"
+        />
+      </div>
+    </div>
+    <div style="margin-top: 1em">
+      <div style="margin-left: auto">
+        <label for="inputPassword5" class="col-form-label ml-2"> Url </label>
+      </div>
+      <div style="content: ' '; margin-left: 1rem"></div>
+      <div style="margin-right: auto">
+        <input
+          [formControl]="url"
+          style="
+            margin-left: auto;
+            margin-right: auto;
+
+            font-weight: bold;
+          "
+          required
+          type="text"
+          id="inputPassword5"
+          class="form-control"
+          aria-describedby="passwordHelpInline"
+        />
+      </div>
+    </div>
+    <div style="display: flex">
+      <div style="margin-top: 1em; margin-left: auto; margin-right: auto">
+        <div style="display: flex">
+          <div style="content: ' '; margin-left: 1rem"></div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="">
+  <div style="display: flex; margin-bottom: 2em">
+    <button
+      style="margin-right: auto; margin-left: 2em; height: 3em"
+      type="button"
+      class="btn btn-outline-danger"
+      (click)="activeModal.close('Close click')"
+    >
+      Close
+    </button>
+    <button
+      (click)="add()"
+      style="margin-right: 2em; width: 6em; height: 3em"
+      type="button"
+      class="btn btn-outline-success"
+    >
+      Add
+    </button>
+  </div>
+</div>
