@@ -1,15 +1,16 @@
 <div class="modal-header">
-  <h4 class="modal-title">New Password</h4>
+  <h4 class="modal-title">Register</h4>
 </div>
 <div class="modal-body">
-  <form name="form" (ngSubmit)="(f.form.valid)" #f="ngForm" novalidate>
+  <form name="form" (ngSubmit)="(f.form.valid)" #f="ngForm">
     <div style="margin-left: auto; margin-top: 0, 5em">
-      <label for="input" class="col-form-label ml-2"> Name </label>
+      <label for="input" class="col-form-label ml-2"> Username </label>
     </div>
     <div style="content: ' '; margin-left: 1rem"></div>
     <div style="margin-right: auto">
       <input
-        [formControl]="name"
+        [formControl]="username"
+        minlength="4"
         style="margin-left: auto; margin-right: auto; font-weight: bold"
         required
         type="text"
@@ -22,19 +23,20 @@
     <div style="margin-top: 1em">
       <div style="margin-left: auto">
         <label for="inputPassword6" class="col-form-label ml-2">
-          Plain Password
+          Password
         </label>
       </div>
       <div style="content: ' '; margin-left: 1rem"></div>
       <div style="margin-right: auto">
         <input
-          [formControl]="uEncPassword"
+          [formControl]="password"
           style="
             margin-left: auto;
             margin-right: auto;
 
             font-weight: bold;
           "
+          minlength="4"
           required
           type="password"
           id="inputPassword6"
@@ -43,29 +45,7 @@
         />
       </div>
     </div>
-    <div style="margin-top: 1em">
-      <div style="margin-left: auto">
-        <label for="inputPassword5" class="col-form-label ml-2"> Url </label>
-      </div>
-      <div style="content: ' '; margin-left: 1rem"></div>
-      <div style="margin-right: auto">
-        <input
-          [formControl]="url"
-          style="
-            margin-left: auto;
-            margin-right: auto;
 
-            font-weight: bold;
-          "
-          pattern="https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)"
-          required
-          type="text"
-          id="inputPassword5"
-          class="form-control"
-          aria-describedby="passwordHelpInline"
-        />
-      </div>
-    </div>
     <div style="display: flex">
       <div style="margin-top: 1em; margin-left: auto; margin-right: auto">
         <div style="display: flex">
@@ -91,7 +71,20 @@
       type="button"
       class="btn btn-outline-success"
     >
-      Add
+      Register
     </button>
+  </div>
+  <div
+    class="alert"
+    role="alert"
+    style="
+      margin-top: 2em;
+      margin-left: 1em;
+      margin-right: 1em;
+      background-color: red;
+    "
+    *ngIf="invalid"
+  >
+    <h5 style="color: white">Invalid Credentials</h5>
   </div>
 </div>

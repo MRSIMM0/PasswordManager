@@ -1,4 +1,4 @@
-<div *ngIf="isLoggedIn !== false; else table">
+<div *ngIf="isLoggedIn == true; else table">
   <app-error></app-error>
 </div>
 <ng-template #table>
@@ -67,7 +67,12 @@
                       <td>
                         <div *ngIf="!pass.view">
                           <button
-                            style="height: 2em"
+                            style="
+                              height: 2em;
+                              padding-bottom: 2em;
+                              color: red;
+                              font-weight: bold;
+                            "
                             class="btn btn-outline-dark"
                             (click)="validate(pass)"
                           >

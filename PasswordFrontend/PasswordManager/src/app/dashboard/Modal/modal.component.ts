@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from 'src/app/Api/api.service';
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { TokenStorageService } from '../../auth/token-storage.service';
 import { PasswordEntity } from '../../models/PasswordEntity';
 @Component({
@@ -13,12 +13,19 @@ export class ModalComponent implements OnInit {
   constructor(
     public activeModal: NgbActiveModal,
     private tokenStorage: TokenStorageService,
-    private api: ApiService
+    private api: ApiService,
+    private fb: FormBuilder
   ) {}
+
   clicked = false;
-  name = new FormControl('');
-  uEncPassword = new FormControl('');
-  url = new FormControl('');
+  name = new FormControl('', [Validators.required]);
+  uEncPassword = new FormControl('', [Validators.required]);
+  url = new FormControl('', [
+    Validators.required,
+    Validators.pattern(
+      'https?://(www.)?[-a-zA-Z0-9@:%._+~#=]{1,256}.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)'
+    ),
+  ]);
 
   ngOnInit(): void {}
 

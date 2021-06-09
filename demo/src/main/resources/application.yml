@@ -1,0 +1,43 @@
+spring:
+
+
+  main:
+
+    allow-bean-definition-overriding: true
+    web-application-type: reactive
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      globalcors:
+        add-to-simple-url-handler-mapping: true
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods:
+              - GET
+              - POST
+            allowedHeaders:
+              - PasswordId
+              - authorization
+              - content-type
+              - x-auth-token
+              - Access-Control-Allow-Origin
+              - Token
+            exposedHeaders: Token
+#
+#  cloud:
+#    gateway:
+#      routes:
+#        - id: MOVIE-INFO-SERVICE
+#          uri: lb://MOVIE-INFO-SERVICE
+#          predicates:
+#          - Path=/movies/**
+jwt:
+  secret: YmFyZHpvX2x1YmllX2plc2NfbmFsZXNuaWtpCg==
+  expirationDate: 3000
+
+server:
+  port: 8090
+
+

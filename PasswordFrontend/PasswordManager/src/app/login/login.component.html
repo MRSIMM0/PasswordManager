@@ -91,7 +91,11 @@
                   Login
                 </button>
                 <div style="content: ' '; margin-left: 1rem"></div>
-                <h6 style="cursor: pointer" class="pt-2 text-light">
+                <h6
+                  (click)="open()"
+                  style="cursor: pointer"
+                  class="pt-2 text-light"
+                >
                   Register now!
                 </h6>
               </div>
@@ -99,6 +103,14 @@
           </div>
         </form>
       </div>
+    </div>
+    <div
+      class="alert"
+      role="alert"
+      style="margin-top: 2em; background-color: red"
+      *ngIf="invalid"
+    >
+      <h5 style="color: white">Invalid Credentials</h5>
     </div>
   </div>
 </div>

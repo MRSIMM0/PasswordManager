@@ -1,6 +1,6 @@
 package pl.SiMMo.AutyhService.Models;
 
-public class LoginForm {
+public class RequestForm {
 
     String username;
     String password;

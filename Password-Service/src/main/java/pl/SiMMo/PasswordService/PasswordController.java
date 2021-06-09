@@ -35,7 +35,8 @@ public class PasswordController {
 
     @PostMapping("/add")
     public ResponseEntity<PasswordEntity> addPassword(@RequestHeader("Token") String token,
-                                                      @RequestBody PasswordEntity passwordEntity) {
+                                                   @RequestBody PasswordEntity passwordEntity) {
+
         JwtResponse response = this.getUserIdFromAuthService(token);
         passwordEntity.setEndPassword(passwordEncoder.encode(passwordEntity.getEndPassword()));
         passwordEntity.setUserId(Long.valueOf(response.getId()));

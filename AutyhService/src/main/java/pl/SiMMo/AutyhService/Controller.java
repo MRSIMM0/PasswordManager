@@ -7,9 +7,11 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import pl.SiMMo.AutyhService.Models.JwtResponse;
-import pl.SiMMo.AutyhService.Models.LoginForm;
+import pl.SiMMo.AutyhService.Models.RequestForm;
+import pl.SiMMo.AutyhService.Models.User;
 import pl.SiMMo.AutyhService.Models.UserRepo;
 import pl.SiMMo.AutyhService.Security.jwt.JwtProvider;
 
@@ -28,15 +30,18 @@ public class Controller {
 
   private UserRepo userRepo;
 
+  private PasswordEncoder passwordEncoder;
 
-    public Controller(AuthenticationManager authenticationManager, JwtProvider jwtProvider, UserRepo userRepo) {
+
+    public Controller(AuthenticationManager authenticationManager, JwtProvider jwtProvider, UserRepo userRepo, PasswordEncoder passwordEncoder) {
         this.authenticationManager = authenticationManager;
         this.jwtProvider = jwtProvider;
         this.userRepo = userRepo;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> authenticate(@RequestBody LoginForm loginRequest) {
+    public ResponseEntity<?> authenticate(@RequestBody RequestForm loginRequest) {
         if (userRepo.findUserByUsername(loginRequest.getUsername()).isPresent()) {
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
@@ -55,6 +60,18 @@ public class Controller {
             return ResponseEntity.ok(res);
         }
         return ResponseEntity.notFound().build();
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<?> register(@RequestBody RequestForm requestForm){
+        if(userRepo.findUserByUsername(requestForm.getUsername()).isPresent()){
+            return ResponseEntity.status(HttpStatus.FOUND).build();
+        }
+        else{
+            User user =new User(requestForm.getUsername(),passwordEncoder.encode(requestForm.getPassword()));
+            userRepo.save(user);
+            return ResponseEntity.status(200).build();
+        }
     }
 
     @PostMapping("/getClaims")

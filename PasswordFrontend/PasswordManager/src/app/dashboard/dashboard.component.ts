@@ -14,10 +14,7 @@ import { ErrorComponent } from './error/error.component';
 export class DashboardComponent implements OnInit {
   isLoggedIn: boolean = false;
 
-  en = new PasswordEntity('test', 'test', 'test');
-  en2 = new PasswordEntity('test', 'test', 'test');
-  en3 = new PasswordEntity('test', 'test', 'test');
-  listOfPass: PasswordEntity[] = [this.en, this.en2, this.en3];
+  listOfPass: PasswordEntity[] = [];
 
   isLoading = true;
 
@@ -30,11 +27,11 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.api.authenticate(this.tokenStorage.getToken()).subscribe(
       (res) => {
-        this.isLoggedIn = true;
+        this.isLoggedIn = false;
         this.getAllPasswords();
       },
       (err) => {
-        this.isLoggedIn = false;
+        this.isLoggedIn = true;
       }
     );
   }
@@ -57,7 +54,7 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  //Dopisac PasswordID jako doswolony header
+
   open() {
     const modalRef = this.modalService.open(ModalComponent, { centered: true });
   }
@@ -67,10 +64,20 @@ export class DashboardComponent implements OnInit {
   }
 
   validate(password) {
-    password.view = true;
-    setTimeout(() => {
-      password.view = false;
-    }, 5000);
+    this.api.authenticate(this.tokenStorage.getToken()).subscribe(
+      (res) => {
+        if(res.id!==null){
+        password.view = true;
+        setTimeout(() => {
+          password.view = false;
+        }, 5000);}else{
+           password.view = false;
+        }
+      },
+      (err) => {
+        password.view = false;
+      }
+    );
   }
 
   logout() {
